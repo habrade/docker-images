@@ -13,11 +13,14 @@ fi
 
 PRJ_NAME=epics-synapps
 TAG_NAME=latest
+EPICS_VERSION=R7.0.4
+EPICS_ARCH=amd64
 
 DOCKER_BUILDKIT=1 docker build \
-    --no-cache \
     --pull \
     --build-arg DEBIAN_MIRROR=${DEBIAN_MIRROR} \
     --build-arg DEBIAN_MIRROR_SECURITY=${DEBIAN_MIRROR_SECURITY} \
+    --build-arg EPICS_VERSION=${EPICS_VERSION} \
+    --build-arg EPICS_ARCH=${EPICS_ARCH} \
     -t habrade/$PRJ_NAME:$TAG_NAME \
     ./

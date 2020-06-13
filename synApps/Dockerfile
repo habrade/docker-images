@@ -1,5 +1,7 @@
 # syntax=docker/dockerfile:experimental
-FROM habrade/epics-base:R7.0.4-amd64
+ARG EPICS_VERSION
+ARG EPICS_ARCH
+FROM habrade/epics-base:${EPICS_VERSION}-${EPICS_ARCH}
 
 LABEL maintainer="s.dong@mails.ccnu.edu.cn"
 
