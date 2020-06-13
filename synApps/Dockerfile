@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     wget
 
 RUN wget https://raw.githubusercontent.com/EPICS-synApps/support/master/assemble_synApps.sh && \ 
+    sed -i -e '/EPICS_BASE=\// s/=.*/=\/opt\/epics\/base/' assemble_synApps.sh && \
     bash ./assemble_synApps.sh full && \ 
     cd ${SUPPORT} && make -j4 
 
