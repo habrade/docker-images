@@ -15,12 +15,14 @@ else
 fi
 
 PRJ_NAME=dpbcontrols
+IPBUS_VERSION=v2.6.3
 
 DOCKER_BUILDKIT=1 docker build \
     --pull \
     --ssh default \
     --build-arg DEBIAN_MIRROR=${DEBIAN_MIRROR} \
     --build-arg DEBIAN_MIRROR_SECURITY=${DEBIAN_MIRROR_SECURITY} \
+    --build-arg IPBUS_VERSION=${IPBUS_VERSION} \
     --progress=plain \
     -t habrade/${PRJ_NAME}:latest \
     ./
