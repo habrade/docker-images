@@ -24,7 +24,7 @@ RUN git clone --depth=1 -b ${VERSION} https://github.com/ipbus/ipbus-software.gi
 RUN ln -s /usr/bin/python3 /usr/bin/python & \
     ln -s /usr/bin/pip3 /usr/bin/pip
 
-RUN cd ipbus-software && make Set=uhal -j4
+RUN cd ipbus-software && make Set=all -j4
 
 ARG REPO_BASE_DIR=/opt/ipbus-software
 ARG UHAL_BASE_DIR=${REPO_BASE_DIR}/uhal
