@@ -26,4 +26,24 @@ RUN ln -s /usr/bin/python3 /usr/bin/python & \
 
 RUN cd ipbus-software && make Set=uhal -j4
 
-ENTRYPOINT ["/bin/bash", "-c", "source /opt/ipbus-software/uhal/tests/setup.sh"]
+ARG REPO_BASE_DIR=/opt/ipbus-software
+ARG UHAL_BASE_DIR=${REPO_BASE_DIR}/uhal
+
+ENV PATH=$UHAL_BASE_DIR/tests/bin:$PATH
+ENV PATH=$UHAL_BASE_DIR/tests/src/python:$PATH
+ENV PATH=$UHAL_BASE_DIR/tests/scripts:$PATH
+ENV PATH=$UHAL_BASE_DIR/tools/scripts:$PATH
+ENV PATH=$REPO_BASE_DIR/extern/erlang/RPMBUILD/SOURCES/bin:$PATH
+ENV PATH=$REPO_BASE_DIR/controlhub/scripts:$PATH
+
+ENV LD_LIBRARY_PATH=$REPO_BASE_DIR/extern/boost/RPMBUILD/SOURCES/lib:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH=$REPO_BASE_DIR/extern/pugixml/RPMBUILD/SOURCES/lib:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH=$UHAL_BASE_DIR/log/lib:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH=$UHAL_BASE_DIR/grammars/lib:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH=$UHAL_BASE_DIR/uhal/lib:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH=$UHAL_BASE_DIR/tests/lib:$LD_LIBRARY_PATH
+
+ENV PYTHONPATH=$UHAL_BASE_DIR/pycohal/pkg:$PYTHONPATH
+#ENV PYTHONPATH=$UHAL_BASE_DIR/gui:$PYTHONPATH
+
+ENTRYPOINT ["/bin/bash"]
